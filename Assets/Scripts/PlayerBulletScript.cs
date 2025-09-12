@@ -7,7 +7,7 @@ public class PlayerBulletScript : MonoBehaviour
     Rigidbody2D rb;
     Transform target;
     [SerializeField]
-    float speed = 50;
+    float speed = 1000;
 
 
 
@@ -20,6 +20,8 @@ public class PlayerBulletScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Destroy(this.gameObject, 1);
+
     }
 
     // Update is called once per frame

@@ -22,16 +22,18 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Image imgHp;
 
-    [SerializeField]
+    
     private ScoreManager scoreManager;
 
-
+    [SerializeField]
+    private GameObject destroyEffect;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        scoreManager = GameObject.FindGameObjectWithTag("scoreManager").GetComponent<ScoreManager>();
     }
 
     // Update is called once per frame
@@ -62,9 +64,10 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("playerBullet"))
+        if (collision.gameObject.CompareTag("playerBullet"))
         {
             TakeDamage(10);
             Destroy(collision.gameObject);
@@ -77,9 +80,10 @@ public class EnemyController : MonoBehaviour
         imgHp.fillAmount = currentHp / MaxHp;
         if (currentHp <= 0)
         {
-            scoreManager.UpdateScore(10);
             Destroy(this.gameObject);
-            
+            scoreManager.UpdateScore(10);
+
+            Instantiate(destroyEffect, transform.position, Quaternion.identity);
 
         }
     }
