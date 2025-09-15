@@ -16,6 +16,7 @@ public class EnemyBulletScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        Destroy(this.gameObject, 1);
     }
 
     // Update is called once per frame
@@ -26,7 +27,7 @@ public class EnemyBulletScript : MonoBehaviour
 
     private void HandleMovement()
     {
-        rb.AddForce((playerTransform.position - transform.position) * speed);
+        rb.AddForce((playerTransform.position - transform.position).normalized * speed);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

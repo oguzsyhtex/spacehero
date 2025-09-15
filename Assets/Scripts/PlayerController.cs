@@ -12,10 +12,10 @@ public class PlayerController : MonoBehaviour
     FixedJoystick fixedJoystick;
 
     Vector2 moveVector;
-    private readonly int moveSpeedMultiplier=10;
-    private float moveSpeed = 20f;
+    private readonly int moveSpeedMultiplier = 1;
+    private float moveSpeed = 15;
 
-    private static float maxHp = 5000;
+    private static float maxHp = 150;
     
     private float currentHp = maxHp;
 
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         var tailObj = Instantiate(tail, transform.position, Quaternion.identity);
-        tailObj.GetComponent<TailController>().Setup(rb, playerBullet);
+        tailObj.GetComponent<TailController>().Setup(rb, playerBullet,0);
         tails.Add(tailObj);
         
     }
@@ -70,7 +70,28 @@ public class PlayerController : MonoBehaviour
             }
             bulletTimer += Time.deltaTime;
         }
-        
+
+        {
+            MoveTails();
+        }
+
+        void MoveTails()
+        {
+            Vector3 previousPosition = transform.position;
+
+            foreach (GameObject tailObj in tails)
+            {
+                if (tailObj != null)
+                {
+                    Vector3 tempPos = tailObj.transform.position;
+                    tailObj.transform.position = Vector3.Lerp(tailObj.transform.position, previousPosition, Time.deltaTime * moveSpeed);
+                    previousPosition = tempPos;
+                }
+            }
+        }
+
+
+
     }
 
     private void FixedUpdate()
@@ -137,24 +158,45 @@ public class PlayerController : MonoBehaviour
     private void TailAttack()
     {
         foreach (GameObject tailObj in tails)
-        {
-            tailObj.GetComponent<TailController>().Attack();
-        }
+            if (tailObj != null)
+            {
+                TailController controller = tailObj.GetComponent<TailController>();
+                if (controller != null)
+                {
+                    controller.Attack();
+                }
+            }
     }
 
+    
     public void UpdateLevel()
     {
+        GameObject prevTail = tails.Count > 0 ? tails[tails.Count - 1] : gameObject;
 
-        var prevTail = tails[level];
-        var tailObj = Instantiate(tail, transform.position, Quaternion.identity);
-        tailObj.GetComponent<TailController>().Setup(rb,playerBullet);
+        
+        Vector3 direction = -prevTail.transform.up; 
+        float tailSpacing = 4f;
+
+        Vector3 spawnPos = prevTail.transform.position - prevTail.transform.up * tailSpacing;
+
+
+        GameObject tailObj = Instantiate(tail, spawnPos, prevTail.transform.rotation);
+
+        Rigidbody2D rb = prevTail.GetComponent<Rigidbody2D>();
+        tailObj.GetComponent<TailController>().Setup(rb, playerBullet,tails.Count);
+
         tails.Add(tailObj);
 
         level++;
-        moveSpeed = level * moveSpeedMultiplier;
-        txtLevel.text = "Level: " + level;
+        moveSpeed += moveSpeedMultiplier;
+        txtLevel.text = "Level : " + level;
+
+        currentHp = maxHp;
+        imgHP.fillAmount = currentHp / maxHp;
+
+
     }
 
-
+    
 
 }

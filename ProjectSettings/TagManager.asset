@@ -17,10 +17,10 @@ TagManager:
   - UI
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - 'Enemy '
+  - Bullet
+  - EnemyBullet
   - 
   - 
   - 

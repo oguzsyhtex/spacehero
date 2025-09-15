@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 7763948717271323863}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0842, y: -0.5377, z: 0}
-  m_LocalScale: {x: 0.47175533, y: 0.44356406, z: 1.8289425}
+  m_LocalPosition: {x: 4.241336, y: 7.0781384, z: 0}
+  m_LocalScale: {x: 0.32324675, y: 0.30393007, z: 3.14}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -129,8 +129,8 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.0842, y: -0.5377}
+  m_Anchor: {x: 0, y: 0.63}
+  m_ConnectedAnchor: {x: -0.006, y: 0.19261007}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -151,3 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 653888a1e43dc434d89c0d0ab63942e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBullet: {fileID: 3531996961293267747, guid: 848e59dad6f836049878d09ba62cc312, type: 3}
+  target: {fileID: 0}
+  followSpeed: 2

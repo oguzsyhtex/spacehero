@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8997439983406093143}
   - component: {fileID: 289051528205759786}
   - component: {fileID: 5343556109237614145}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: ImgHp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 8892554656375712029}
   - component: {fileID: 4446436339767664433}
   - component: {fileID: 5364280412728870159}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: ImgHp (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 7818162784943283642}
   - component: {fileID: 8558837184932973421}
   - component: {fileID: 2573479803214781246}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyThree
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -277,9 +277,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 450ba51409e4dcb49b99542627c93508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1
   bullet: {fileID: 3531996961293267747, guid: 9131aaf4e49bad94da9e014e8f8a3e17, type: 3}
+  MaxHp: 70
   imgHp: {fileID: 5343556109237614145}
+  reward: 50
   destroyEffect: {fileID: 7706416994411958503, guid: c23a2d288230eb44290f37606dd53b13, type: 3}
 --- !u!61 &2573479803214781246
 BoxCollider2D:
@@ -338,7 +340,7 @@ GameObject:
   - component: {fileID: 339441557455478168}
   - component: {fileID: 51891820886182926}
   - component: {fileID: 2681869423063231588}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

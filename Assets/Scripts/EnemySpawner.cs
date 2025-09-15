@@ -25,9 +25,9 @@ public class EnemySpawner : MonoBehaviour
         if (timer >duration)
         {
             timer = 0;
-            duration = Random.Range(33, 44);
+            duration = Random.Range(3, 5);
 
-            var enemyCount = Random.Range(1,playerController.Level);
+            var enemyCount = Random.Range(1,(playerController.Level/5)+1);
 
             for (int i = 0; i < enemyCount; i++)
             {
@@ -37,4 +37,7 @@ public class EnemySpawner : MonoBehaviour
         }
         timer += Time.deltaTime;
     }
+
+    public GameObject enemyPrefab;
 }
+

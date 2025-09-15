@@ -20,9 +20,14 @@ public class ScoreManager : MonoBehaviour
     public void UpdateScore(int amount)
     {
         score += amount;
-        textScore.text = "SCORE : " + score;
+        textScore.text = "SCORE: " + score;
 
-        if (score % 10== 0 && score !=0)
+        if (score > highScore)
+        {
+            SetHighScore();
+        }
+
+        if (score % 10 == 0 && score != 0)
         {
             playerController.UpdateLevel();
         }
@@ -32,11 +37,14 @@ public class ScoreManager : MonoBehaviour
 
     public void SetHighScore()
     {
-        if (score>=highScore)
+        if (score >= highScore)
         {
-            PlayerPrefs.SetInt("HIGH_SCORE: ", score);
+            highScore = score;
+            PlayerPrefs.SetInt("HIGH_SCORE", highScore);
+            txtHighScore.text = "HIGHSCORE: " + highScore;
         }
     }
+
     private void Start()
     {
         highScore = PlayerPrefs.GetInt("HIGH_SCORE: ", 0);
